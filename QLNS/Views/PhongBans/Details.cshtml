@@ -1,0 +1,71 @@
+﻿@model IEnumerable<QLNS.ViewModels.NhanVienDetailViewModel>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+@if (Model.Any())
+{
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+                <th scope="row">Tên Phòng Ban</th>
+                <td>@Model.First().PhongBan.TenPB</td>
+            </tr>
+            <tr>
+                <th scope="row">Mã Phòng Ban</th>
+                <td>@Model.First().PhongBan.MaPB</td>
+            </tr>
+            <tr>
+                <th scope="row">Địa Chỉ</th>
+                <td>@Model.First().PhongBan.DiaChi</td>
+            </tr>
+        </tbody>
+    </table>
+}
+<div class="mt-4">
+        <h3>Thêm nhân viên vào phòng ban</h3>
+        <form asp-controller="PhongBans" asp-action="AddNhanVien" asp-route-id="@Model.First().PhongBan.MaPB">
+            <div class="input-group">
+                <input type="text" class="form-control" name="maNhanVien" placeholder="Nhập mã nhân viên" required>
+                <input type="text" class="form-control" name="maChucVu" placeholder="Nhập mã chức vụ" required>
+                <button type="submit" class="btn btn-primary">Thêm</button>
+            </div>
+        </form>
+    </div>
+@if (Model.Skip(1).Any())
+{ 
+    <h2>Danh sách nhân viên</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên Nhân Viên</th>
+                <th>Chức Vụ</th>
+                <th></th> <!-- Thêm cột mới -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Skip(1))
+            {
+                <tr>
+                    <td>@item.NhanVien.MaNV</td>
+                    <td>@item.NhanVien.TenNV</td>
+                    <td>@item.TenQuyUocMaChucVu</td>
+                    <td>
+                        <form asp-controller="PhongBans" asp-action="Deletenv" asp-route-id="@item.NhanVien.MaNV" asp-route-PB="@Model.First().PhongBan.MaPB">
+                            <button type="submit" class="btn btn-danger">Xoá</button>
+                        </form>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+
+}

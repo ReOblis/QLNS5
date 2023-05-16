@@ -1,0 +1,64 @@
+﻿@model IEnumerable<QLNS.ViewModels.NhanVienDetailViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                Mã Nhân Viên
+            </th>
+            <th>
+                Loại Hợp Đồng
+            </th>
+            <th>
+                Thời Hạn
+            </th>
+            <th>
+               Phòng
+            </th>
+            <th>
+               Mã Lương
+            </th>
+            <th>
+                Phụ Cấp
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HopDongLaoDong.MaNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HopDongLaoDong.LoaiHDLD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HopDongLaoDong.ThoiHan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NhanVien.MaPB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HopDongLaoDong.MaLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HopDongLaoDong.PhuCap)
+            </td>
+            
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.HopDongLaoDong.MaHDLD">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

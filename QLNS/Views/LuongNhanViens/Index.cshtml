@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QLNS.ViewModels.NhanVienDetailViewModel>
+@using QLNS.Models;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaNV)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.LCBan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuongDuKien)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNV)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.LCBan)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LuongDuKien)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaLuong">Edit</a> |
+                    <a href="@Url.Action("ExportToPdf", new { maNV = @item.MaNV })"> Xuất PDF </a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

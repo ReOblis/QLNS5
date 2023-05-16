@@ -1,0 +1,45 @@
+﻿@model IEnumerable<QLNS.Models.ChamCong>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayChamCong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoGioLamViec)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayChamCong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoGioLamViec)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaCC">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaCC">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

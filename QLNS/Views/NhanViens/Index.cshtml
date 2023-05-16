@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QLNS.ViewModels.NhanVienDetailViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/styles.css" />
+<link rel="stylesheet" href="~/css/styles.min.css" />
+
+<div class="p-3 mb-2 bg-dark text-white">
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+        <div class="container-fluid">
+           
+                <div class="card-body">
+                <table class="table table-dark" id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên Nhân Viên
+                        </th>
+                        <th>
+                            Mã Nhân Viên
+                        </th>
+                        <th>
+                           Giới tính
+                        </th>
+                        <th>Phòng</th>
+                        <th>Chức Vụ</th>
+                        <td></td>
+                        <th>Số giờ làm</th>
+
+                        <th>Hệ số lương</th>
+                        <th>Mã hợp đồng lao động</th>
+                       
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhanVien.TenNV)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhanVien.MaNV)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhanVien.GioiTinh)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.NhanVien.MaPB)</td>
+
+                            <td>@Html.DisplayFor(modelItem => item.TenQuyUocMaChucVu)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Sogio)</td>
+                            <td>@Html.DisplayFor(modelItem => item.NhanVien.HeSoLuong)</td>
+                            <td>@Html.DisplayFor(modelItem => item.NhanVien.MaHDLD)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.NhanVien.MaNV">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.NhanVien.MaNV">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.NhanVien.MaNV">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                    </table>
+                </div>
+            </>
+        </div>
+
+</div>
+
